@@ -51,7 +51,7 @@ function replay() {
         let marker = document.getElementById(`bx${i}`);
         marker.style.backgroundColor = '#0da192';
     }
-    let interval = 1000;
+    let interval = 750;
     history.forEach(function(el, index) {
         document.querySelector('.player').innerHTML = '';
         setTimeout(function() {
