@@ -11,5 +11,7 @@
 
 ### Implementation 
 ![alt text](images/Tic-Tac-Toe-250x250.png)
+
 Demonstration of the replay
+
 ![al text](images/demo2.gif)
