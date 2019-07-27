@@ -14,14 +14,6 @@ h2 {
     color: white;
 }
 
-.container {
-    width:60%;
-    text-align: center;
-    text-decoration: underline;
-    text-decoration-color: white;
-}
-
-
 body {
     height: 100vh;
     margin: 0;
@@ -33,15 +25,18 @@ body {
   }
 
   button {
-      background-color: aquamarine;
-      border-radius: 20%;   
+      background-color: #14bdac;
       width: 50;
       height: 25px;
-      color: rgba(99, 91, 91, 0.632);
+      color: white;
+      border: none;
+      font-size: 25px;
+      margin-bottom: 5px;
+      margin-top: 5px;
   }
 
 #reset {
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .playable {
@@ -70,9 +65,8 @@ section.playable div {
   }
 
 section.playable :hover {
-    background-color: aquamarine !important ;
+    background-color: aquamarine !important;
     cursor: cell;
   }
-
 
 

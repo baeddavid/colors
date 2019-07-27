@@ -1,17 +1,22 @@
 /*----- constants -----*/ 
 /*----- app's state (variables) -----*/ 
-let board, map;
+let board, map, history;
 let isPlayer1, turn, win;
 /*----- cached element references -----*/ 
 /*----- event listeners -----*/ 
 let x = document.querySelector('section.playable')
 x.addEventListener('click', handleClick)
-x.addEventListener('click', print)
+
 let rst = document.getElementById('reset'); 
 rst.addEventListener('click', reset);
 
+let rply = document.getElementById('rply');
+rply.addEventListener('click', replay);
+
 /*----- functions -----*/
 play();
+
+
 
 function reset() {
     play();
@@ -25,12 +30,6 @@ function reset() {
     }
 }
 
-function print() {
-    for(let x of board) {
-    console.log(x);
-    }
-    console.log('-----------------------');
-}
 
 function play() {
     board = [
@@ -38,6 +37,7 @@ function play() {
         [0, 0, 0],
         [0, 0, 0],
     ];
+    history = [],
     map = new Map();
     map.set(0, 9);
     isPlayer1 = true;
@@ -46,10 +46,52 @@ function play() {
     
 }
 
+function replay() {
+    for(let i = 0; i < 9; i++) {
+        let marker = document.getElementById(`bx${i}`);
+        marker.style.backgroundColor = '#0da192';
+    }
+    let interval = 1000;
+    history.forEach(function(el, index) {
+        document.querySelector('.player').innerHTML = '';
+        setTimeout(function() {
+            renderBoard(el);
+        }, index * interval);
+    });
+}
+
+function renderBoard(gameState) {
+    let rowCounter = 0;
+    for(let x of gameState) {
+        if(rowCounter == 0){
+            for(let idx = 0; idx < x.length; idx++) {
+                if(x[idx] == 1)
+                    render1(idx);
+                if(x[idx] == -1)
+                    render2(idx);    
+            }
+        } if(rowCounter == 1){
+            for(let idx = 0; idx < x.length; idx++) {
+                if(x[idx] == 1)
+                    render1(idx + 3);
+                if(x[idx] == -1)
+                    render2(idx + 3);    
+            }
+        } if(rowCounter == 2){
+            for(let idx = 0; idx < x.length; idx++) {
+                if(x[idx] == 1)
+                    render1(idx + 6);
+                if(x[idx] == -1)
+                    render2(idx + 6);    
+            }
+        }
+        rowCounter++;
+    }
+}
+
 function render1(i) {
     let marker = document.getElementById(`bx${i}`);
     marker.style.backgroundColor = '#1de9b6'; 
-    console.log(marker)
 }
 
 function render2(i) {
@@ -65,6 +107,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][0] = 1;
+                history.push(board.map(inner => inner.slice()));
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);                
@@ -82,6 +125,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][1] = 1;
+                history.push(board.map(inner => inner.slice()));
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -99,6 +143,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][2] = 1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -116,6 +161,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][0] = 1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -133,6 +179,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][1] = 1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -150,6 +197,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][2] = 1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -167,6 +215,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][0] = 1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -184,6 +233,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][1] = 1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -201,6 +251,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][2] = 1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
@@ -220,6 +271,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][0] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -235,6 +287,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][1] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -252,6 +305,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][2] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -269,6 +323,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][0] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -286,6 +341,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][1] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -303,6 +359,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][2] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -320,6 +377,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][0] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -337,6 +395,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][1] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
@@ -354,6 +413,7 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][2] = -1;
+                history.push(board.map(inner => inner.slice()));;
                 document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
