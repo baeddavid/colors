@@ -9,6 +9,11 @@ h1 {
     color: white;
 }
 
+h2 {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+}
+
 body {
     height: 100vh;
     margin: 0;
@@ -22,6 +27,9 @@ body {
   button {
       background-color: aquamarine;
       border-radius: 20%;   
+      width: 50;
+      height: 25px;
+      color: rgba(99, 91, 91, 0.632);
   }
 
 #reset {
@@ -30,6 +38,13 @@ body {
 
 .playable {
     background-color: #14bdac;
+}
+
+.dsp {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-size: 45px;
+    
 }
 
 section.playable {
@@ -50,5 +65,6 @@ section.playable :hover {
     background-color: aquamarine !important ;
     cursor: cell;
   }
+
 
 

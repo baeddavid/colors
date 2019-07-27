@@ -15,9 +15,11 @@ play();
 
 function reset() {
     play();
+    let x = document.querySelector('section.playable')
+    x.addEventListener('click', handleClick)
     for(let i = 0; i < 9; i++) {
         let marker = document.getElementById(`bx${i}`);
-        marker.style.backgroundColor = '#0da192';
+        marker.style.backgroundColor = 'transparent';
     }
     alert('Game has been reset');
 }
@@ -44,12 +46,12 @@ function play() {
 
 function render1(i) {
     let marker = document.getElementById(`bx${i}`);
-    marker.style.backgroundColor = 'black'; 
+    marker.style.backgroundColor = '#1de9b6'; 
 }
 
 function render2(i) {
     let marker = document.getElementById(`bx${i}`);
-    marker.style.backgroundColor = 'navy';
+    marker.style.backgroundColor = '#AFEEEE';
 }
 
 function handleClick(evt) {
@@ -63,8 +65,9 @@ function handleClick(evt) {
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
+                if(win) {
                     alert('Player 1 has Won');
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
