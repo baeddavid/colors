@@ -8,4 +8,4 @@
 * Replay the order of moves live to see what the last move played was or how you lost.
 
 ### Implementation 
-![alt text](images/Tic-Tac-Toe.png)
+![alt text](images/Tic-Tac-Toe-250x250.png)
