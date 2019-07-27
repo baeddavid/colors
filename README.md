@@ -9,7 +9,18 @@
 * Reset Button
 * Replay the order of moves live to see what the last move played was or how you lost.
 
-### Implementation 
+**Note**
+I built the app around the `isWin` and `checkTie` algorithms. Had I had the time to start over from the beginning and not be in too deep, I would have started over from the css and html in a way that I could have scaled the build up and reduced the amount of JS code needed. I plan on refactoring most of the JS code within the week for efficient sake.
+
+## Version 
+
+0.9.1 → Fixed a bug where players could click outside of the box and still counter as a successful move
+
+0.9 → Beta Build
+
+
+
+## Implementation 
 ![alt text](images/Tic-Tac-Toe-250x250.png)
 
 Demonstration of the replay
