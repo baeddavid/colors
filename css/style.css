@@ -21,7 +21,7 @@ body {
 
   button {
       background-color: aquamarine;
-      border-radius: 20%;
+      border-radius: 20%;   
   }
 
 #reset {
@@ -29,7 +29,7 @@ body {
 }
 
 .playable {
-    background-color: #0da192;
+    background-color: #14bdac;
 }
 
 section.playable {
@@ -37,13 +37,13 @@ section.playable {
     grid-template-columns: repeat(3, 15vmin);
     grid-template-rows: repeat(3, 15vmin);
     grid-gap: 7px;
-    box-shadow: 10px 10px 5px grey;
     border-radius: 5%;
   }
 
 section.playable div {
     border: 2px solid aqua;
     border-radius: 10%;
+    background-color: #0da192;
   }
 
 section.playable :hover {
