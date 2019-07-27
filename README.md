@@ -14,4 +14,4 @@
 
 Demonstration of the replay
 
-![al text](ezgif.com-crop/demo4.gif)
+![al text](images/ezgif.com-crop.gif)
