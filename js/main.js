@@ -16,6 +16,7 @@ play();
 function reset() {
     play();
     document.querySelector('.win').innerHTML = '';
+    document.querySelector('.player').innerHTML = 'Player: 1'
     let x = document.querySelector('section.playable')
     x.addEventListener('click', handleClick)
     for(let i = 0; i < 9; i++) {
@@ -48,6 +49,7 @@ function play() {
 function render1(i) {
     let marker = document.getElementById(`bx${i}`);
     marker.style.backgroundColor = '#1de9b6'; 
+    console.log(marker)
 }
 
 function render2(i) {
@@ -65,7 +67,7 @@ function handleClick(evt) {
                 board[0][0] = 1;
                 document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
-                render1(i);
+                render1(i);                
                 let win = checkWin();
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
