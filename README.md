@@ -58,3 +58,4 @@ This is because every move every time a tile is placed we check every single pos
 
 3. Blinking animations for when a winning combination is found.
 
+4. Refactor the `handleClick` funtion
