@@ -15,13 +15,13 @@ play();
 
 function reset() {
     play();
+    document.querySelector('.win').innerHTML = '';
     let x = document.querySelector('section.playable')
     x.addEventListener('click', handleClick)
     for(let i = 0; i < 9; i++) {
         let marker = document.getElementById(`bx${i}`);
-        marker.style.backgroundColor = 'transparent';
+        marker.style.backgroundColor = '#0da192';
     }
-    alert('Game has been reset');
 }
 
 function print() {
@@ -42,6 +42,7 @@ function play() {
     isPlayer1 = true;
     turn = 1;
     win = false;
+    
 }
 
 function render1(i) {
@@ -62,11 +63,13 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][0] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
                 if(win) {
-                    alert('Player 1 has Won');
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -77,11 +80,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][1] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);   
                 checkTie(); 
             }
@@ -91,11 +97,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][2] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -105,11 +114,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][0] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -119,11 +131,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][1] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -133,11 +148,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][2] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -147,11 +165,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][0] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -161,11 +182,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][1] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -175,11 +199,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][2] = 1;
+                document.querySelector('.player').innerHTML = 'Player: 2'
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 1 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 1'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -191,11 +218,12 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][0] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) 
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -205,11 +233,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][1] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -219,11 +250,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[0][2] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -233,11 +267,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][0] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -247,11 +284,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][1] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -261,11 +301,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[1][2] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -275,11 +318,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][0] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');  
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -289,11 +335,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][1] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -303,11 +352,14 @@ function handleClick(evt) {
                 alert('ALREADY TAKEN PLEASE TRY AGAIN');
             } else {
                 board[2][2] = -1;
+                document.querySelector('.player').innerHTML = 'Player: 1'
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win)
-                    alert('Player 2 has Won');
+                if(win) {
+                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    document.querySelector('.player').innerHTML = 'Player: 2'
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -317,7 +369,7 @@ function handleClick(evt) {
 
 function checkTie() {
     if(!win && map.get(0) == 0)
-        alert('TIE');
+        document.querySelector('.win').innerHTML = '<span class="dsp">TIE!</span>';
 }
 
 function checkWin() {
