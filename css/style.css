@@ -43,6 +43,13 @@ body {
     background-color: #14bdac;
 }
 
+.mrk {
+  color: white;
+  text-align: center;
+  font-size: 110px;
+  margin-bottom: 10px;
+}
+
 .dsp {
     font-family: 'Quicksand', sans-serif;
     color: white;
@@ -56,6 +63,7 @@ section.playable {
     grid-template-rows: repeat(3, 15vmin);
     box-shadow: 5px 10px #888888;
     border-radius: 5%;
+    
   }
 
 section.playable div {

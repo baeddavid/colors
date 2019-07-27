@@ -27,6 +27,7 @@ function reset() {
     for(let i = 0; i < 9; i++) {
         let marker = document.getElementById(`bx${i}`);
         marker.style.backgroundColor = '#0da192';
+        // marker.innerHTML = '';
     }
 }
 
@@ -50,6 +51,7 @@ function replay() {
     for(let i = 0; i < 9; i++) {
         let marker = document.getElementById(`bx${i}`);
         marker.style.backgroundColor = '#0da192';
+        // marker.innerHTML = '';
     }
     let interval = 750;
     history.forEach(function(el, index) {
@@ -91,11 +93,13 @@ function renderBoard(gameState) {
 
 function render1(i) {
     let marker = document.getElementById(`bx${i}`);
+    // marker.innerHTML = '<span class="mrk">X</span>';
     marker.style.backgroundColor = '#1de9b6'; 
 }
 
 function render2(i) {
     let marker = document.getElementById(`bx${i}`);
+    // marker.innerHTML = '<span class="mrk">O</span>';
     marker.style.backgroundColor = '#AFEEEE';
 }
 
