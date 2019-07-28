@@ -76,4 +76,4 @@ This is because every time a tile successfully is placed we check every single p
 
 4. ~Refactor the `handleClick` funtion~
 
-5. *New* Redo the `convertIdx` so that it is scalable.
+5. ***New*** → Redo the `convertIdx` so that it is scalable.
