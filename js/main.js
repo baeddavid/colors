@@ -43,7 +43,7 @@ function play() {
     map.set(0, 9);
     isPlayer1 = true;
     turn = 1;
-    win = false;
+    win;
     
 }
 
@@ -152,9 +152,11 @@ function handleClick(evt) {
                 isPlayer1 = false;
                 render1(i);
                 let win = checkWin();
+                console.log(win);
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 1'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -173,6 +175,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 1'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -191,6 +194,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 1'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -209,6 +213,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 1'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -227,6 +232,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 1'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -245,6 +251,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 1'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -263,6 +270,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 1'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -280,8 +288,10 @@ function handleClick(evt) {
                 isPlayer1 = true;
                 render2(i);
                 let win = checkWin();
-                if(win) 
+                if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+                    return;
+                }
                 map.set(0, map.get(0) - 1);
                 checkTie();
             }
@@ -299,6 +309,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -317,6 +328,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -335,6 +347,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -353,6 +366,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -371,6 +385,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -389,6 +404,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -407,6 +423,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();
@@ -425,6 +442,7 @@ function handleClick(evt) {
                 if(win) {
                     document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
                     document.querySelector('.player').innerHTML = 'Player: 2'
+                    return;
                 }
                 map.set(0, map.get(0) - 1);
                 checkTie();

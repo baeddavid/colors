@@ -14,6 +14,8 @@ I built the app around the `isWin` and `checkTie` algorithms. Had I had the time
 
 ## Version 
 
+0.9.2 → Fixed a bug where text was indicating a tie instead of a win when all 9 boxes were filled
+
 0.9.1 → Fixed a bug where players could click outside of the box and have it still count as a successful move
 
 0.9 → Beta Build
