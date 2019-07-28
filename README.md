@@ -7,7 +7,7 @@
 * Keeps track of current player
 * Declares winner and disables game upon win
 * Reset Button
-* Replay the order of moves live to see what the last move played was or how you lost.
+* Replay the order of moves sequentially to see what the last move played was or how you lost.
 
 **Note**
 I built the app around the `isWin` and `checkTie` algorithms. Had I had the time to start over from the beginning and not be in too deep, I would have started over from the css and html in a way that I could have scaled the build up and reduced the amount of JS code needed. I plan on refactoring most of the JS code within the week for efficiency.
