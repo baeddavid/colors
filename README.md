@@ -12,6 +12,8 @@
 **Note**
 ~I built the app around the `isWin` and `checkTie` algorithms. Had I had the time to start over from the beginning and not be in too deep, I would have started over from the css and html in a way that I could have scaled the build up and reduced the amount of JS code needed. I plan on refactoring most of the JS code within the week for efficiency.~
 
+As of 7/28/2019 I have halved the code base.
+
 ## Version 
 0.9.3 → Refactored `handleClick` function reducing code base by over 50%. Runs 8% faster using `performance.now()`
 
@@ -73,3 +75,5 @@ This is because every time a tile successfully is placed we check every single p
 3. Blinking animations for when a winning combination is found.
 
 4. ~Refactor the `handleClick` funtion~
+
+5. *New* Redo the `convertIdx` so that it is scalable.
