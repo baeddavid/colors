@@ -10,9 +10,10 @@
 * Replay the order of moves sequentially to see what the last move played was or how you lost.
 
 **Note**
-I built the app around the `isWin` and `checkTie` algorithms. Had I had the time to start over from the beginning and not be in too deep, I would have started over from the css and html in a way that I could have scaled the build up and reduced the amount of JS code needed. I plan on refactoring most of the JS code within the week for efficiency.
+~I built the app around the `isWin` and `checkTie` algorithms. Had I had the time to start over from the beginning and not be in too deep, I would have started over from the css and html in a way that I could have scaled the build up and reduced the amount of JS code needed. I plan on refactoring most of the JS code within the week for efficiency.~
 
 ## Version 
+0.9.3 → Refactored `handleClick` function reducing code base by over 50%. Runs 8% faster using `performance.now()`
 
 0.9.2 → Fixed a bug where text was indicating a tie instead of a win when all 9 boxes were filled
 
@@ -71,4 +72,4 @@ This is because every time a tile successfully is placed we check every single p
 
 3. Blinking animations for when a winning combination is found.
 
-4. Refactor the `handleClick` funtion
+4. ~Refactor the `handleClick` funtion~

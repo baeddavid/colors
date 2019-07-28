@@ -1,8 +1,6 @@
-/*----- constants -----*/ 
 /*----- app's state (variables) -----*/ 
 let board, map, history;
-let isPlayer1, turn, win;
-/*----- cached element references -----*/ 
+let isPlayer1, turn, winnerPresent;
 /*----- event listeners -----*/ 
 let x = document.querySelector('section.playable')
 x.addEventListener('click', handleClick)
@@ -12,11 +10,8 @@ rst.addEventListener('click', reset);
 
 let rply = document.getElementById('rply');
 rply.addEventListener('click', replay);
-
 /*----- functions -----*/
 play();
-
-
 
 function reset() {
     play();
@@ -31,7 +26,6 @@ function reset() {
     }
 }
 
-
 function play() {
     board = [
         [0, 0, 0],
@@ -42,9 +36,7 @@ function play() {
     map = new Map();
     map.set(0, 9);
     isPlayer1 = true;
-    turn = 1;
-    win;
-    
+    winnerPresent = false;
 }
 
 function replay() {
@@ -67,28 +59,30 @@ function renderBoard(gameState) {
     for(let x of gameState) {
         if(rowCounter == 0){
             for(let idx = 0; idx < x.length; idx++) {
-                if(x[idx] == 1)
+                if(x[idx] == 1) {
                     render1(idx);
+                }
                 if(x[idx] == -1)
-                    render2(idx);    
+                    render_1(idx);    
             }
         } if(rowCounter == 1){
             for(let idx = 0; idx < x.length; idx++) {
                 if(x[idx] == 1)
                     render1(idx + 3);
                 if(x[idx] == -1)
-                    render2(idx + 3);    
+                    render_1(idx + 3);    
             }
         } if(rowCounter == 2){
             for(let idx = 0; idx < x.length; idx++) {
                 if(x[idx] == 1)
                     render1(idx + 6);
                 if(x[idx] == -1)
-                    render2(idx + 6);    
+                    render_1(idx + 6);    
             }
         }
         rowCounter++;
     }
+    return;
 }
 
 function render1(i) {
@@ -97,362 +91,87 @@ function render1(i) {
     marker.style.backgroundColor = '#1de9b6'; 
 }
 
-function render2(i) {
+function render_1(i) {
     let marker = document.getElementById(`bx${i}`);
     // marker.innerHTML = '<span class="mrk">O</span>';
     marker.style.backgroundColor = '#AFEEEE';
 }
 
+function render(idx) {
+    if(!winnerPresent) {
+        let marker = document.getElementById(`bx${idx}`);
+        if(isPlayer1)
+            marker.style.backgroundColor = '#1de9b6'; 
+        else
+            marker.style.backgroundColor = '#AFEEEE';   
+    }
+}
+
 function handleClick(evt) {
-    let i = evt.target.id.replace('bx', '');
-    if(isPlayer1) {
-        if(i == 0) {
-            if(board[0][0] == 1 || board[0][0] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[0][0] = 1;
-                history.push(board.map(inner => inner.slice()));
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);                
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
+    let idx = parseInt(evt.target.id.replace('bx', ''));
+    let idx2d = convertIdx(idx);
+    if(isPlayer1) { 
+        if(board[idx2d[0]][idx2d[1]] != 0) {
+            alert('TILE HAS ALREADY BEEN CHOSEN');
+            return;
+        } else
+            board[idx2d[0]][idx2d[1]] = 1;    
+        history.push(board.map(inner => inner.slice()));    
+        map.set(0, map.get(0) - 1);
+        render(idx);
+        checkWin();
+        checkTie();
+        if(winnerPresent) {
+            document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+            return;
         }
-        if(i == 1) {
-            if(board[0][1] == 1 || board[0][1] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[0][1] = 1;
-                history.push(board.map(inner => inner.slice()));
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                }
-                map.set(0, map.get(0) - 1);   
-                checkTie(); 
-            }
-        }
-        if(i == 2) {
-            if(board[0][2] == 1 || board[0][2] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[0][2] = 1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                console.log(win);
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 3) {
-            if(board[1][0] == 1 || board[1][0] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[1][0] = 1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        } 
-        if(i == 4) {
-            if(board[1][1] == 1 || board[1][1] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[1][1] = 1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 5) {
-            if(board[1][2] == 1 || board[1][2] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[1][2] = 1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 6) {
-            if(board[2][0] == 1 || board[2][0] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[2][0] = 1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 7) {
-            if(board[2][1] == 1 || board[2][1] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[2][1] = 1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 8) {
-            if(board[2][2] == 1 || board[2][2] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[2][2] = 1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 2'
-                isPlayer1 = false;
-                render1(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 1'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        
+        isPlayer1 = false;
+        document.querySelector('.player').innerHTML = 'Player: 2' 
     } else {
-        if(i == 0) {
-            if(board[0][0] == 1 || board[0][0] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[0][0] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
+        if(board[idx2d[0]][idx2d[1]] != 0) {
+            alert('TILE HAS ALREADY BEEN CHOSEN');
+            return;
+        } else
+            board[idx2d[0]][idx2d[1]] = -1;
+        history.push(board.map(inner => inner.slice()));    
+        map.set(0, map.get(0) - 1);    
+        render(idx);
+        checkWin();
+        checkTie();
+        if(winnerPresent) {
+            document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
+            return;
         }
-        if(i == 1) {
-            if(board[0][1] == 1 || board[0][1] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[0][1] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 2) {
-            if(board[0][2] == 1 || board[0][2] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[0][2] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 3) {
-            if(board[1][0] == 1 || board[1][0] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[1][0] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 4) {
-            if(board[1][1] == 1 || board[1][1] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[1][1] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 5) {
-            if(board[1][2] == 1 || board[1][2] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[1][2] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 6) {
-            if(board[2][0] == 1 || board[2][0] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[2][0] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 7) {
-            if(board[2][1] == 1 || board[2][1] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[2][1] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }
-        if(i == 8) {
-            if(board[2][2] == 1 || board[2][2] == -1) {
-                alert('ALREADY TAKEN PLEASE TRY AGAIN');
-            } else {
-                board[2][2] = -1;
-                history.push(board.map(inner => inner.slice()));;
-                document.querySelector('.player').innerHTML = 'Player: 1'
-                isPlayer1 = true;
-                render2(i);
-                let win = checkWin();
-                if(win) {
-                    document.querySelector('.win').innerHTML = '<span class="dsp">You Win!</span>';
-                    document.querySelector('.player').innerHTML = 'Player: 2'
-                    return;
-                }
-                map.set(0, map.get(0) - 1);
-                checkTie();
-            }
-        }    
+        isPlayer1 = true;
+        document.querySelector('.player').innerHTML = 'Player: 1' 
+    }
+}
+
+function convertIdx(idx) {
+    switch(idx) {
+        case 0: 
+            return [0,0]
+        case 1: 
+            return [0,1]
+        case 2:
+            return [0,2]
+        case 3: 
+            return [1,0]
+        case 4:
+            return [1,1]
+        case 5:
+            return [1,2]
+        case 6:
+            return [2,0]
+        case 7: 
+            return [2,1]
+        case 8:
+            return [2,2]            
     }
 }
 
 function checkTie() {
-    if(!win && map.get(0) == 0)
+    if(!winnerPresent && map.get(0) == 0)
         document.querySelector('.win').innerHTML = '<span class="dsp">TIE!</span>';
 }
 
@@ -467,9 +186,9 @@ function checkWin() {
         for(let j = 0; j < board.length; j++) {
             sum += board[j][i]
         }
-        if(sum == -3 || sum == 3) {
+        if(Math.abs(sum) == 3) {
             x.removeEventListener('click', handleClick);
-            return true;
+            winnerPresent = true;
         }
         else
             sum = 0;
@@ -481,9 +200,9 @@ function checkWin() {
         for(let j = 0; j < board.length; j++) {
             sum += board[i][j];
         }
-        if(sum == -3 || sum == 3) {
+        if(Math.abs(sum) == 3) {
             x.removeEventListener('click', handleClick);
-            return true;
+            winnerPresent = true;
         }
         else
             sum = 0;
@@ -493,9 +212,9 @@ function checkWin() {
     for(let i = 0, j = 0; i < board.length; i++, j++){
         sum += board[i][j];   
     } 
-    if(sum == -3 || sum == 3) {
+    if(Math.abs(sum) == 3) {
         x.removeEventListener('click', handleClick);
-        return true;
+        winnerPresent = true;
     }
     else
         sum = 0;
@@ -506,11 +225,9 @@ function checkWin() {
     for(let i = 0, j = board.length - 1; i < board.length; i++, j--) {
         sum += board[i][j];
     } 
-    if(sum == -3 || sum == 3) {
+    if(Math.abs(sum) == 3) {
         x.removeEventListener('click', handleClick);
-        return true;
+        winnerPresent = true;
     }
-    
     // If we have not yet returned true, we know that there are no wins and that it is a tie
-    return false;
 }
