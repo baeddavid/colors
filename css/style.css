@@ -61,9 +61,8 @@ section.playable {
     display: grid;
     grid-template-columns: repeat(3, 15vmin);
     grid-template-rows: repeat(3, 15vmin);
-    box-shadow: 5px 10px #888888;
     border-radius: 5%;
-    
+    grid-gap: 7px;
   }
 
 section.playable div {
