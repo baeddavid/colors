@@ -39,7 +39,7 @@ Three key features of this game
 **Win Logic**
 
   * The win logic was implemented using a 2-d array with sizes 3 x 3. To represent an unselected tile, it is denoted with a `0`. Player one's move is denoted with `1` and player two's move is denoted with `-1`. 
-  * To check for a win, the `isWin` algorithm checks every single possible sum of every row, column, diagonal, and anti-diagonal when ever a tile is played. 
+  * To check for a win, the `isWin` algorithm checks every single possible sum of every row, column, diagonal, and anti-diagonal whenever a tile is played. 
 
   *  If the sum of any row, column, diagonal, or  anti-diagonal is `3` or `-3` a player has just played the winning move and the `win` boolean is set to `true`
 
