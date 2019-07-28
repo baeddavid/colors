@@ -1,6 +1,14 @@
 # Tic Tac Toe
 ## A Tic Tac Toe game made in HTML/CSS/JS.
 
+## Design:
+
+* I was inspired by the Colors Youtube channel where musicians sing in a room with muted colors. 
+
+* Removed the grid line, replacing it with a grid gap instead, to make it seem like the board is "built" into the background.
+
+* X and O are disabled by default. I believe that with the overall color-based theme of the game, it was better to have tiles change to different shades. X and O can be enabled by uncommenting the `innerHTML` lines.
+
 ### Features:
 * Cyan Color Theme: Easy on the eyes
 * Win/Loss/Tie Game Logic
