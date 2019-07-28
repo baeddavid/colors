@@ -35,7 +35,7 @@ As of 7/28/2019 I have halved the code base.
 
 
 ## Implementation 
-![alt text](images/Tic-Tac-Toe-250x250.png)
+![alt text](images/colors.png)
 
 Demonstration of the replay
 
