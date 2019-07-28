@@ -44,7 +44,7 @@ Three key features of this game
   *  If the sum of any row, column, diagonal, or  anti-diagonal is `3` or `-3` a player has just played the winning move and the `win` boolean is set to `true`
 
   * **Issues** - Because the game board is set to a size of 3 x 3 time is not an issue. However it is important to note that the `isWin` has a worst case time complexity of O(2N² + 2/3N).
-This is because every move every time a tile is placed we check every single possible row sum and column sum which has a respective time complexity of O(N²). Checking for diagonal and anti-diagonal is trivial with a time complexity of O(1/3N).
+This is because every time a tile successfully is placed we check every single possible row-sum and column-sum which has a respective time complexity of O(N²). Checking for diagonal and anti-diagonal is trivial with a time complexity of O(1/3N).
 
   * Scaling this design to a board of 10 x 10 or 25 x 25 would demand a redesign of the algorithm.
 
