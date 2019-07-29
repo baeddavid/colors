@@ -2,9 +2,14 @@
 let board, map, history;
 let isPlayer1, winnerPresent;
 /*----- event listeners -----*/ 
-document.querySelector('section.playable').addEventListener('click', handleClick);
-document.getElementById('reset').addEventListener('click', reset);
-document.getElementById('rply').addEventListener('click', replay);
+let x = document.querySelector('section.playable')
+x.addEventListener('click', handleClick)
+
+let rst = document.getElementById('reset'); 
+rst.addEventListener('click', reset);
+
+let rply = document.getElementById('rply');
+rply.addEventListener('click', replay);
 /*----- functions -----*/
 play();
 
