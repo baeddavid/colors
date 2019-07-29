@@ -186,7 +186,7 @@ function checkWin() {
         for(let j = 0; j < board.length; j++) {
             sum += board[j][i]
         }
-        if(Math.abs(sum) == 3) {
+        if(Math.abs(sum) == board.length) {
             x.removeEventListener('click', handleClick);
             winnerPresent = true;
         }
@@ -200,7 +200,7 @@ function checkWin() {
         for(let j = 0; j < board.length; j++) {
             sum += board[i][j];
         }
-        if(Math.abs(sum) == 3) {
+        if(Math.abs(sum) == board.length) {
             x.removeEventListener('click', handleClick);
             winnerPresent = true;
         }
@@ -212,7 +212,7 @@ function checkWin() {
     for(let i = 0, j = 0; i < board.length; i++, j++){
         sum += board[i][j];   
     } 
-    if(Math.abs(sum) == 3) {
+    if(Math.abs(sum) == board.length) {
         x.removeEventListener('click', handleClick);
         winnerPresent = true;
     }
@@ -225,7 +225,7 @@ function checkWin() {
     for(let i = 0, j = board.length - 1; i < board.length; i++, j--) {
         sum += board[i][j];
     } 
-    if(Math.abs(sum) == 3) {
+    if(Math.abs(sum) == board.length) {
         x.removeEventListener('click', handleClick);
         winnerPresent = true;
     }
