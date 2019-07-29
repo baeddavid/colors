@@ -1,6 +1,6 @@
 /*----- app's state (variables) -----*/ 
 let board, map, history;
-let isPlayer1, turn, winnerPresent;
+let isPlayer1, winnerPresent;
 /*----- event listeners -----*/ 
 let x = document.querySelector('section.playable')
 x.addEventListener('click', handleClick)
